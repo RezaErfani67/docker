@@ -1,10 +1,13 @@
 FROM node:alpine
+RUN addgroup app && adduser -S -G app app
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN addgroup app && adduser -S -G app app
+
+USER app
 ENV API_URL=http://doctorjs.ir
-CMD node app.js
+CMD ['node','app.js']
+ENTRYPOINT
 
 
 
