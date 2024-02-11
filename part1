@@ -1,0 +1,11 @@
+FROM node:alpine
+COPY . /app
+WORKDIR /app
+CMD node app.js
+
+
+
+//to run above file
+docker build -t myDockerImage .
+docker image ls
+docker run myDockerImage
