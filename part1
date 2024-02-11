@@ -1,6 +1,9 @@
 FROM node:alpine
-COPY . /app
 WORKDIR /app
+COPY . .
+RUN npm install
+RUN addgroup app && adduser -S -G app app
+ENV API_URL=http://doctorjs.ir
 CMD node app.js
 
 
@@ -9,3 +12,15 @@ CMD node app.js
 docker build -t myDockerImage .
 docker image ls
 docker run myDockerImage
+
+//این دستور به  امکان کار کردن با شل را به ما میدهد.
+docker run -it myDockerImage sh/bash
+
+docker pull ubuntu
+docker run ubuntu -it
+
+
+//فایل زیپ شده را کپی میکند و آن کامپرس میکند.
+ADD file.zip /app
+ADD http://doctorjs.ir/myfile /app
+
